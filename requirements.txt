@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+duckdb
+numpy
+requests
+python-dotenv
+python-multipart
