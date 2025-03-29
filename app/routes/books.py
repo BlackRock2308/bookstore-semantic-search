@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends
-import duckdb
 import numpy as np
 from app.models.schemas import Book, SearchResult
 from app.services.embedding import generate_embedding
@@ -15,6 +14,21 @@ def cosine_similarity(a: list, b: list) -> float:
 
 @router.post("/add-book/")
 async def add_book(book: Book, conn=Depends(get_db)):
+    """
+    Add a new book or update its embedding if it already exists.
+
+    - **book.title**: The title of the book to add.
+    
+    ### How to test with cURL:
+    ```
+    curl -X 'POST' \
+      'http://127.0.0.1:8000/api/books/add-book/' \
+      -H 'Content-Type: application/json' \
+      -d '{
+        "title": "The Lord of the Rings"
+      }'
+    ```
+    """
     try:
         embedding = generate_embedding(book.title)
         conn.execute("""
@@ -35,6 +49,19 @@ async def search_books(
     limit: int = 2,
     conn=Depends(get_db)
 ):
+    """
+    Search for books based on a text query.
+
+    - **query**: The search string (e.g., "classic novel").
+    - **limit**: Number of results to return (default: 2).
+
+    ### How to test with cURL:
+    ```
+    curl -X 'GET' \
+      'http://127.0.0.1:8000/api/books/search/?query=classic%20novel&limit=3' \
+      -H 'accept: application/json'
+    ```
+    """
     query_embedding = generate_embedding(query)
     result = conn.execute("SELECT title, embedding FROM books").fetchall()
     
