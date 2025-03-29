@@ -3,5 +3,5 @@ uvicorn
 duckdb
 numpy
 requests
-python-dotenv
+asyncio
 python-multipart

@@ -10,10 +10,8 @@ This project is a FastAPI-based application for managing a bookstore and perform
 ## Project Structure
 
 ```
-.env
 .gitignore
 bookstore.db
-initial_books.txt
 requirements.txt
 app/
     main.py
@@ -43,7 +41,7 @@ myenv/
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/BlackRock2308/bookstore-semantic-search.git
    cd bookstore-semantic-search
    ```
 
@@ -67,6 +65,13 @@ myenv/
      );
      ```
 
+5. Set the Hugging Face token as an environment variable:
+   ```bash
+   export HF_TOKEN="your_huggingface_token"
+   ```
+
+   Replace `"your_huggingface_token"` with your actual Hugging Face API token.
+
 ## Usage
 
 1. Start the FastAPI server:
@@ -74,9 +79,6 @@ myenv/
    uvicorn app.main:app --reload
    ```
 
-2. Access the API documentation at:
-   - Swagger UI: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
-   - ReDoc: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
 
 ### Example Endpoints
 

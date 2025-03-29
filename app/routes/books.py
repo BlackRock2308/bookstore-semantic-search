@@ -25,12 +25,12 @@ async def add_book(book: Book, conn=Depends(get_db)):
       'http://127.0.0.1:8000/api/books/add-book/' \
       -H 'Content-Type: application/json' \
       -d '{
-        "title": "The Lord of the Rings"
+        "title": "The 40 rules of the religion of Love"
       }'
     ```
     """
     try:
-        embedding = generate_embedding(book.title)
+        embedding = await generate_embedding(book.title)
         conn.execute("""
             INSERT INTO books (title, embedding)
             VALUES (?, ?)
@@ -62,7 +62,7 @@ async def search_books(
       -H 'accept: application/json'
     ```
     """
-    query_embedding = generate_embedding(query)
+    query_embedding = await generate_embedding(query)
     result = conn.execute("SELECT title, embedding FROM books").fetchall()
     
     # Use a dictionary to track max similarity per title
