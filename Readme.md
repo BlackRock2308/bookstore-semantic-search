@@ -56,14 +56,6 @@ myenv/
    pip install -r requirements.txt
    ```
 
-4. Set up the database:
-   - Ensure `bookstore.db` is initialized with a `books` table:
-     ```sql
-     CREATE TABLE books (
-         title TEXT PRIMARY KEY,
-         embedding BLOB
-     );
-     ```
 
 5. Set the Hugging Face token as an environment variable:
    ```bash
