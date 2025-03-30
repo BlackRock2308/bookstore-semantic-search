@@ -68,7 +68,7 @@ myenv/
 
 1. Start the FastAPI server:
    ```bash
-   uvicorn app.main:app --reload
+   uvicorn app.main:app --host 0.0.0.0 --port 8000
    ```
 
 
@@ -91,8 +91,4 @@ myenv/
 
 ## Testing
 
-You can test the API using tools like `curl`, Postman, or directly through the Swagger UI.
-
-## License
-
-This project is licensed under the MIT License.
+You can test the API using tools like `curl`, Postman, or httpie
